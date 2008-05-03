@@ -177,6 +177,10 @@ def main(argv):
     #end if
 
     jsfl.append("fl.outputPanel.save(logFile, true);\n")
+    
+    #Thanks to Patrick Palmer who provided this fix for cs3
+    if usecs3:
+    	jsfl.append("fl.compilerErrors.save(logFile, true);\n")
 
     if(closeDocAfterComplete):
         jsfl.append("fl.getDocumentDOM().close(false);\n")
