@@ -1,0 +1,2 @@
+
+usage: flashcommand -e | -c | -p [-v] [-x] (-s <sourcefile>) ([-o] <exportpath>) ([-t] <timeout>)([-d] <tempdir>) [-j]

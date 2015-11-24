@@ -1,0 +1,42 @@
+{
+  "name": "flashcommand",
+  "version": "0.0.1",
+  "description": "A command line compiler for Macromedia Flash.",
+  "main": "lib/flashcommand",
+  "scripts": {
+    "start": "npm link",
+    "test": "mocha spec -u tdd -R spec --recursive",
+    "coverage": "istanbul cover -x '**/spec/**' ./node_modules/mocha/bin/_mocha -- --recursive --require spec/helpers/chai.js spec",
+    "report": "open ./coverage/lcov-report/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haysclark/flashcommand.git"
+  },
+  "preferGlobal": "true",
+  "bin": {
+    "flashcommand": "bin/flashcommand.js"
+  },
+  "dependencies": {
+    "minimist": "~1.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.3.21",
+    "mocha": "^2.3.3",
+    "mocha-lcov-reporter": "^1.0.0",
+    "mock-stdin": "^0.3.0",
+    "sinon": "^1.17.0"
+  },
+  "keywords": [
+    "flash",
+    "cli"
+  ],
+  "author": "Hays Clark",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haysclark/flashcommand/issues"
+  },
+  "homepage": "https://github.com/haysclark/flashcommand#readme"
+}
