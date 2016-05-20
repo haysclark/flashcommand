@@ -45,3 +45,9 @@ Author
 ------
 
  - Mike Chambers
+
+Contributors
+------------
+
+ - Patrick Palmer
+ - Hays Clark

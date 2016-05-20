@@ -2,20 +2,18 @@
 
 ###########################
 # flashcommand
-# A command line compiler for Macromedia Flash MX 2004 on Mac OS X
+# A command line compiler for Flash Professional and Adobe Animate on Mac OS X
 #
 # Created by Mike Chambers
-# http://www.markme.com/mesh/archives/004419.cfm
+# 
+# Contributors
+#  - Patrick Palmer
+#  - Hays Clark
 #
 # Requires:
-#   -python : http://www.python.org
-#   -Flash MX 2004 : http://www.macromedia.com/software/flash
+#   - Python : http://www.python.org
+#   - Flash Professional or Adobe Animate : https://www.adobe.com/products/animate.html
 #
-#
-#TODO:
-#put comments at top of jsfl that put generated date, and what it was created with
-#fix timing output
-#write usage output
 ###########################
 
 import sys
@@ -30,7 +28,7 @@ false = 0
 true = 1
 
 #version number
-version = ".90"
+version = "1.0.0"
     
 #main function. This is the heart of the script
 def main(argv):
@@ -47,10 +45,10 @@ def main(argv):
     printJSFL = false
     verbose = false
     timeout = 30
-    usecs3 = True
+    flash_name = "Adobe Flash CC 2015"
 
     #valid command line pars
-    params = "eho:cpd:s:fkxyjpdvt:a"
+    params = "eho:cpd:s:fn:kxyjpdvt:a"
 
     #parse the command line params
     try:
@@ -86,7 +84,11 @@ def main(argv):
         elif opt == '-k':
             remJSFL = true 
         elif opt == '-f':
-        	usecs3 = False
+            print "-f has been depricated: use -n instead"
+            usage()
+            sys.exit(1)
+        elif opt == '-n':
+            flash_name = arg           
         elif opt == '-x':
             closeFlashAfterComplete = true
         elif opt == '-y':
@@ -179,8 +181,7 @@ def main(argv):
     jsfl.append("fl.outputPanel.save(logFile, true);\n")
     
     #Thanks to Patrick Palmer who provided this fix for cs3
-    if usecs3:
-    	jsfl.append("fl.compilerErrors.save(logFile, true);\n")
+    jsfl.append("fl.compilerErrors.save(logFile, true);\n")
 
     if(closeDocAfterComplete):
         jsfl.append("fl.getDocumentDOM().close(false);\n")
@@ -243,12 +244,6 @@ def main(argv):
     #end if
 
     #write applescript pointing to file
-    
-    flash_name = "Adobe Flash CS3"
-    
-    if not usecs3:
-    	flash_name = "Flash"
-    
     shellCommand = "osascript -e 'tell application \""+ flash_name +"\" to open posix file \""+ jsflFile.name +"\"'"
     
     if(verbose):
@@ -329,7 +324,7 @@ def createAbsPath(path):
 #end createAbsPath
 
 def usage():
-    print """usage: flashcommand -e | -c | -p [-v] [-x] (-s <sourcefile>) ([-o] <exportpath>) ([-t] <timeout>)([-d] <tempdir>) [-j]
+    print """usage: flashcommand -e | -c | -p [-v] [-x] (-n <flashname>) (-s <sourcefile>) ([-o] <exportpath>) ([-t] <timeout>)([-d] <tempdir>) [-j]
 
 Options and arguments:
 -a : Prints version and about information.
@@ -343,7 +338,7 @@ Options and arguments:
 -s : Specifies source file. Required.
 -t : Specifies timeout value. Optional.
 -v : Specifies verbose mode. Optional.
--f : Specifies that the Flash authoring version installed is a version other than Flash CS3
+-n : Specifies the Flash authoring version to use instead of Flash CS3. e.g.: "Adobe Flash CS3". Optional.
 -x : Specifies whether Flash should be closed after it is done processing. Optional."""
 
 #end usage
