@@ -1,0 +1,12 @@
+# https://travis-ci.org/haysclark/flashcommand
+
+# The tool only supports OSX, so lets test with it.
+language: objective-c
+
+script:
+    # Get out of the source directory before running tests to avoid PYTHONPATH
+    # confusion.  This is necessary to ensure that the speedups module can
+    # be found in the installation directory.
+    - python --version
+    - cd osx/src
+    - ./flashcommand -h
