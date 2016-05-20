@@ -1,13 +1,14 @@
 flashcommand
 ============
-[![GitHub release](https://img.shields.io/github/release/haysclark/flashcommand.svg?maxAge=2592000)](https://github.com/haysclark/flashcommand/releases)
+[![GitHub release](https://img.shields.io/github/release/haysclark/flashcommand.svg?maxAge=3600)](https://github.com/haysclark/flashcommand/releases) [![license](https://img.shields.io/github/license/haysclark/flashcommand.svg?maxAge=86400)]()
 
 Command line tool written in python which can launch Flash authoring to compile FLAs into SWFs.
 
 Requires
 --------
 
- - Python
+ - [Python](http://www.python.org)
+ - [Adobe Animate/Flash Professional](https://www.adobe.com/products/animate.html)
 
 Installation
 ------------
@@ -39,3 +40,8 @@ Usage
  -x : Specifies whether Flash should be closed after it is done processing. Optional.  
 
 Note: If you are using any version of Flash other than Flash CS3, then you need to specify the -f flag on the command line.
+
+Author
+------
+
+ - Mike Chambers
